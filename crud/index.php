@@ -1,4 +1,5 @@
 <?php 
+include_once 'php/action/db_connect.php';
 // Header
 include_once 'includes/header.php';
 ?>
@@ -17,14 +18,20 @@ include_once 'includes/header.php';
                 </tr>
             </thead>
             <tbody>
+            <?php
+            $sql = "SELECT * FROM clientes";
+            $resultado = mysqli_query($connect, $sql);
+            while($dados = mysqli_fetch_array($resultado)):
+            ?>
                 <tr>
-                    <td>Rodrigo</td>
-                    <td>Oliveira</td>
-                    <td>RodrigoSantos</td>
-                    <td>25</td>
+                    <td><?php echo $dados['nome']; ?></td>
+                    <td><?php echo $dados['sobrenome']; ?></td>
+                    <td><?php echo $dados['email']; ?></td>
+                    <td><?php echo $dados['idade']; ?></td>
                     <td><a href="" class="btn-floating blue"><i class="material-icons">edit</i></a></td>
                     <td><a href="" class="btn-floating blue"><i class="material-icons">remove</i></a></td>
                 </tr>
+            <?php endwhile;?>
             </tbody>
         </table>
         <br>
